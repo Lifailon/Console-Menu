@@ -20,15 +20,21 @@ logo=(
 )
 selected=0
 
+# Off and on cursor
+tput civis
+trap ctrl_c INT
+function ctrl_c() {
+    tput cnorm
+    clear
+    exit 0
+}
+
 function show-menu {
     clear
     rows=$(tput lines)
     cols=$(tput cols)
     menu_length=${#menu[@]}
     current_row=$((rows / 2 - menu_length / 2))
-
-    tput cup $current_row $((cols / 2 - ${#menu[$i]} / 2))
-    echo -e $logo
 
     # logo
     for i in "${!logo[@]}"; do
@@ -57,6 +63,7 @@ while true; do
         "")
             clear
             if [[ $selected -eq $(( ${#menu[@]} - 1 )) ]]; then # Exit
+                tput cnorm
                 break
             else
                 line=${menu[$selected]}
