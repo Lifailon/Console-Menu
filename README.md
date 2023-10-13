@@ -12,4 +12,5 @@ Graphical console menu for bash/shell scripts and using the ASCII Art logo.
 - Set your logo in array: **logo (13 line)**
 - Take an example and describe your application logic in **line 72-85**
 
+
 ⭐ The highest commendation would be to give this project a **star**.
