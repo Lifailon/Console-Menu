@@ -18,7 +18,6 @@ logo=(
 "  \____\___/|_| |_|___/\___/|_|\___|         |_|  |_|\___|_| |_|\__,_| "
 "                                                                       "
 )
-selected=0
 
 # Off and on cursor
 tput civis
@@ -29,8 +28,10 @@ function ctrl_c() {
     exit 0
 }
 
+clear
+selected=0
+
 function show-menu {
-    clear
     rows=$(tput lines)
     cols=$(tput cols)
     menu_length=${#menu[@]}
@@ -58,7 +59,7 @@ function show-menu {
 
 while true; do
     show-menu
-    read -n1 key
+    read -rsn1 key
     case $key in
         "")
             clear
@@ -82,6 +83,7 @@ while true; do
                 fi
                 read -p "Press Enter to continue..."
             fi
+            clear
         ;;
         # up
         "A"|"a")
